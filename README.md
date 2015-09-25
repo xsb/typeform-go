@@ -2,7 +2,9 @@
 
 Go library for Typeform APIs
 
-## Example
+## Examples
+
+### Creating a form in typeform.io
 
 ```go
 package main
@@ -37,7 +39,7 @@ func main() {
 	choice2 := tfio.Choice{"orange"}
 	choice3 := tfio.Choice{"pineapple"}
 	choice4 := tfio.Choice{"apple"}
-	f4.Choices = []tfio.Choice{choice1, choice2, choice3}
+	f4.Choices = []tfio.Choice{choice1, choice2, choice3, choice4}
 
 	//Create Dropdown
 	f5 := tfio.Dropdown()
