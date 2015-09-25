@@ -1,10 +1,14 @@
 # typeform-go
 
-Go library for Typeform APIs
+Go library for [Typeform](http://www.typeform.com) APIs.
+
+Implements:
+- [Typeform I/O](http://docs.typeform.io/)
+- [Typeform.com Data API](http://helpcenter.typeform.com/hc/en-us/articles/200071986-Data-API)
 
 ## Examples
 
-### Creating a form in typeform.io
+### Creating a Form
 
 ```go
 package main
@@ -74,5 +78,29 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+}
+```
+
+### Getting submissions from the Data API
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/xsb/typeform-go/tfcom"
+)
+
+func main() {
+
+	tfcom.ApiKey = "<Your typeform.com API Key>"
+	formUid := "Form UID"
+
+	b, err := tfcom.GetResponses(formUid)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(b))
 }
 ```
