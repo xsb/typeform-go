@@ -8,10 +8,6 @@ type Field struct {
 	Tags        []string `json:"tags,omitempty"`
 }
 
-type FieldDescriber interface {
-	ToJson() []byte
-}
-
 type Choice struct {
 	Choice string `json:"label"`
 }
