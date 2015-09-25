@@ -1,5 +1,7 @@
 package tfio
 
+//Field Types
+
 type Field struct {
 	FieldType   string   `json:"type"`
 	Question    string   `json:"question"`
@@ -12,22 +14,42 @@ type Choice struct {
 	Choice string `json:"label"`
 }
 
-//Field: Short Text
-
 type ShortTextField struct {
 	Field
 }
+
+type LongTextField struct {
+	Field
+}
+
+type MultipleChoiceField struct {
+	Field
+	Choices []Choice `json:"choices"`
+}
+
+type StatementField struct {
+	Field
+}
+
+type DropdownField struct {
+	Field
+	Choices []Choice `json:"choices"`
+}
+
+type YesNoField struct {
+	Field
+}
+
+type NumberField struct {
+	Field
+}
+
+//Field Constructors
 
 func ShortText() ShortTextField {
 	f := ShortTextField{}
 	f.FieldType = "short_text"
 	return f
-}
-
-//Field: Long Text
-
-type LongTextField struct {
-	Field
 }
 
 func LongText() LongTextField {
@@ -36,64 +58,32 @@ func LongText() LongTextField {
 	return f
 }
 
-//Field: Multiple Choice
-
-type MultipleChoiceField struct {
-	Field
-	Choices []Choice `json:"choices"`
-}
-
 func MultipleChoice() MultipleChoiceField {
-	mc := MultipleChoiceField{}
-	mc.FieldType = "multiple_choice"
-	return mc
-}
-
-//Field: Statement
-
-type StatementField struct {
-	Field
+	f := MultipleChoiceField{}
+	f.FieldType = "multiple_choice"
+	return f
 }
 
 func Statement() StatementField {
-	st := StatementField{}
-	st.FieldType = "statement"
-	return st
-}
-
-//Field: Dropdown
-
-type DropdownField struct {
-	Field
-	Choices []Choice `json:"choices"`
+	f := StatementField{}
+	f.FieldType = "statement"
+	return f
 }
 
 func Dropdown() DropdownField {
-	dr := DropdownField{}
-	dr.FieldType = "dropdown"
-	return dr
-}
-
-//Field: Yes/No
-
-type YesNoField struct {
-	Field
+	f := DropdownField{}
+	f.FieldType = "dropdown"
+	return f
 }
 
 func YesNo() YesNoField {
-	yn := YesNoField{}
-	yn.FieldType = "yes_no"
-	return yn
-}
-
-//Field: Number
-
-type NumberField struct {
-	Field
+	f := YesNoField{}
+	f.FieldType = "yes_no"
+	return f
 }
 
 func Number() NumberField {
-	num := NumberField{}
-	num.FieldType = "number"
-	return num
+	f := NumberField{}
+	f.FieldType = "number"
+	return f
 }
