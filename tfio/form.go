@@ -3,7 +3,6 @@ package tfio
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -20,32 +19,35 @@ type FormDescription struct {
 	Fields []interface{} `json:"fields"`
 }
 
-func (fd FormDescription) CreateForm() error {
+func NewForm(title string) FormDescription {
+	f := FormDescription{}
+	f.Title = title
+	return f
+}
+
+func (fd FormDescription) CreateForm() ([]byte, error) {
 
 	b, err := json.Marshal(fd)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	client := &http.Client{}
 	req, err := newRequest("POST", "/forms", bytes.NewBuffer(b))
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	//Debug
-	fmt.Println(string(body))
-
-	return nil
+	return body, nil
 }
