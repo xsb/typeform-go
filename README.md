@@ -1,6 +1,6 @@
 # typeform-go
 
-Go library for [Typeform](http://www.typeform.com) APIs.
+Go library for [Typeform](http://www.typeform.com) APIs. No official. Lots of things not implemented. Currently unmaintained.
 
 Implements:
 - [Typeform I/O](http://docs.typeform.io/)
